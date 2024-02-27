@@ -20,23 +20,56 @@ class Settings {
    
 };
 
-//void raspredelenie{
-    //здесь будет распределение всех экземпляров по 2 массивам (рег и нон рег)
-//}
+class Table {
+public:
+    Table(int h, int w): settings(Settings(TypeFurniture::TABLE, h, w)) {}
+   
+    Table(Settings s){
+        settings = s;
+    }
+    Settings settings;
+    std::string material;
+};
+class Chair {
+public:
+    Settings settings;
+    std::string material;
+};
+class Computer {
+public:
+    int number;
+    bool power_check_and_print (bool pwr){
+    if (pwr == 1){
+        return true;
+    }
+    else {
+        return false;
+    }
+   
+   
+    }
+};
+class Screen {
+public:
+    int number;
+    int hight;
+    int width;
+    int scr_resolution;
+};
+
 int main(){
-    std::string pwr;
-   // Table table;
+    bool pwr;
     Chair chair;
     Screen scr;
     Computer comp;
-    std::cout<<"Is current working?"<<std::endl;
+    std::cout<<"Is there power?"<<std::endl;
     std::cin>>pwr;
     if (comp.power_check_and_print(pwr)){
-        std::cout<<"computer number ??? ready to work"<<std::endl;
-        std::cout<<"monitor number ??? is also ready to work"<<std::endl;
+        std::cout<<"PC # is ready to work"<<std::endl;
+        std::cout<<"Monitor # is ready to work"<<std::endl;
     }
     else {
-        std::cout<<"this computer and monitir don't work"<<std::endl;
+        std::cout<<"This PC isn't ready to work"<<std::endl;
     }
    
    
