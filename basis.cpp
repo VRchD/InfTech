@@ -1,20 +1,13 @@
 #include <iostream>
 
-enum class Furniture {
-    BOOKSHELF, CHAIR, TABLE, BENCH, CHEST, CMPTR
-};
-
-
-class Settings {
-public:
-    Furniture type;
+class Parameters {
+public:  
     u_int32_t id;
     float height;
     float width;
     float depth;
-    Settings(){}
-    Settings(Furniture t, float h, float w, float d, u_int32_t i){
-        type = t;
+    Parameters(){}
+    Parameters(float h, float w, float d, u_int32_t i){
         height = h;
         width = w;
         depth = d;
@@ -23,32 +16,19 @@ public:
 };
 class Table {
 public:
-    Table(float h, float w, float d, u_int32_t i): settings(Settings(Furniture::TABLE, h, w, d, i)) {}
-   
-    Table(Settings s){
-        settings = s;
-    }
-    Settings settings;
+    Parameters parameters;
     std::string material;
+    
 };
 class Chair {
 public:
-    Chair(float h, float w, float d, u_int32_t i): settings(Settings(Furniture::CHAIR, h, w, d, i)) {}
-   
-    Chair(Settings s){
-        settings = s;
-    }
-    Settings settings;
+    Parameters parameters;
     std::string material;
+    
 };
 class Computer {
 public:
-    Computer(float h, float w, float d, u_int32_t i): settings(Settings(Furniture::CMPTR, h, w, d, i)) {}
-   
-    Computer(Settings s){
-        settings = s;
-    }
-    Settings settings;
+    Parameters parameters;
     bool power_check (char pwr){
         if (pwr == 'Y' || pwr == 'y'){
             return true;
@@ -60,14 +40,9 @@ public:
 };
 class Screen {
 public:
-    Screen(float h, float w, float d, u_int32_t i): settings(Settings(Furniture::CMPTR, h, w, d, i)) {}
-   
-    Screen(Settings s){
-        settings = s;
-    }
+    Parameters parameters;
     uint16_t scr_resX = 0;
     uint16_t scr_resy = 0;
-    Settings settings;
     bool power_check (char pwr){
         if (pwr == 'Y' || pwr == 'y'){
             return true;
@@ -81,6 +56,7 @@ public:
 
 class unregistered {
     public:
+
         char name[16] = "";
         bool isPresent = false;
         float height = 0;
@@ -88,5 +64,18 @@ class unregistered {
 };
 
 int main() {
+    bool pwr;
+    Chair chair;
+    Screen scr;
+    Computer comp;
+    std::cout<<"Is there sufficient power?"<<std::endl;
+    std::cin>>pwr;
+    if (comp.power_check(pwr)){
+        std::cout<<"PC # is ready to work"<<std::endl;
+        std::cout<<"Monitor # is ready to work"<<std::endl;
+    }
+    else {
+        std::cout<<"This PC isn't ready to work"<<std::endl;
+    }
     
 }
